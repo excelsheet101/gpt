@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GPT — Great Pickle Taste</title>
+  <meta name="description" content="GPT — Great Pickle Taste. Homely Nepali pickles crafted with recipes passed down generations. Empowering women, sharing flavour." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#E67E22; /* warm orange modern accent */
+      --muted:#555;
+      --bg:#f9fafb;
+      --card:#fff;
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#222;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+
+    /* Header */
+    .topbar{background:#fff;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:50}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{font-weight:700;font-size:20px;color:var(--accent)}
+    .brand h1{font-size:18px;margin:0;font-weight:600}
+    nav{display:flex;gap:20px;align-items:center}
+    nav a{font-weight:500;color:#333;transition:color 0.2s}
+    nav a:hover{color:var(--accent)}
+    .cta{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;font-weight:600;transition:background 0.3s}
+    .cta:hover{background:#cf6d1a}
+    .hamburger{display:none;font-size:24px;border:none;background:none;cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:center;padding:60px 24px}
+    .hero-text h2{font-size:40px;font-weight:700;margin-bottom:16px;color:#111}
+    .hero-text p{color:var(--muted);margin-bottom:20px}
+    .shop-btn{display:inline-block;background:var(--accent);color:#fff;padding:14px 22px;border-radius:10px;font-weight:600;font-size:15px;transition:all 0.3s}
+    .shop-btn:hover{background:#cf6d1a;transform:translateY(-2px)}
+    .hero-img img{width:100%;border-radius:var(--radius);box-shadow:0 8px 30px rgba(0,0,0,0.08)}
+
+    /* Section */
+    section{padding:60px 24px}
+    h3.section-title{font-size:28px;font-weight:700;margin-bottom:12px;color:#111}
+    p.section-sub{margin:0 0 30px;color:var(--muted)}
+
+    /* Products */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:0 6px 20px rgba(0,0,0,0.05);transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,0.08)}
+    .product-img{width:100%;border-radius:12px;object-fit:cover;aspect-ratio:1.2/1}
+    .product-title{font-weight:600;margin-top:12px;font-size:16px}
+    .product-desc{font-size:14px;color:var(--muted);margin-top:6px;flex:1}
+    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+    .price{font-weight:700;font-size:15px}
+    .add{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;border:none;font-size:14px;cursor:pointer;transition:background 0.3s}
+    .add:hover{background:#cf6d1a}
+
+    /* Testimonials */
+    .testimonials .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .testimonial{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.05);transition:transform 0.3s}
+    .testimonial:hover{transform:translateY(-3px)}
+    .testimonial p{margin:0 0 12px;font-style:italic;color:#444}
+    .t-name{font-weight:600}
+    .t-role{font-size:13px;color:var(--muted)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:30px}
+    .form input,.form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #ddd;margin-bottom:14px;font-size:14px}
+    .form button{background:var(--accent);color:#fff;padding:14px 18px;border-radius:10px;border:none;font-weight:600;cursor:pointer;transition:background 0.3s}
+    .form button:hover{background:#cf6d1a}
+
+    /* Footer */
+    footer{padding:24px;background:#111;color:#eee;text-align:center;font-size:14px}
+
+    /* Responsive */
+    @media(max-width:768px){
+      nav{display:none;flex-direction:column;background:#fff;position:absolute;right:16px;top:70px;padding:16px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+      .hamburger{display:block}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">GPT</div>
+      <h1>Great Pickle Taste</h1>
+    </div>
+
+    <nav>
+      <a href="#our-story">Our Story</a>
+      <a href="#products">Products</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="#products">Shop Now</a>
+    </nav>
+
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="our-story">
+      <div class="hero-text">
+        <h2>From a small kitchen to a taste that travels</h2>
+        <p>GPT — Great Pickle Taste — began as the passion of a housewife preserving family recipes passed down from her mother and grandmother. Enriched by flavours discovered across Nepal, GPT now shares authentic Nepali pickles with the world while empowering women in our communities.</p>
+        <a class="shop-btn" href="#products">Explore Products</a>
+      </div>
+      <div class="hero-img">
+        <img src="image\covergpt.png" alt="Homemade pickles">
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+      <h3 class="section-title">Our Pickles</h3>
+      <p class="section-sub">Authentic flavours inspired by households across Nepal.</p>
+      <div class="grid" id="productsGrid"></div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <h3 class="section-title">What our customers say</h3>
+      <p class="section-sub">Real feedback from people who love traditional taste.</p>
+      <div class="grid" id="testGrid"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h3 class="section-title">Get in touch</h3>
+      <p class="section-sub">Questions, wholesale enquiries, or simply to say hello — we'd love to hear from you.</p>
+      <div class="contact-grid">
+        <div class="form">
+          <input type="text" id="name" placeholder="Full name" />
+          <input type="email" id="email" placeholder="Email address" />
+          <input type="text" id="subject" placeholder="Subject" />
+          <textarea id="message" rows="6" placeholder="Message"></textarea>
+          <button onclick="submitForm()">Send Message</button>
+          <p id="formStatus"></p>
+        </div>
+        <aside style="background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.05)">
+          <h4>Contact Info</h4>
+          <p>GPT – Great Pickle Taste<br>Bhaktapur, Nepal<br>Phone: +977 9741203315<br>Email: hello@gpt.com.np</p>
+          <h5>Opening Hours</h5>
+          <p>Mon — Sat: 9:00 AM — 6:00 PM</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © GPT 2025 — Great Pickle Taste. All rights reserved.
+  </footer>
+
+  <script>
+    const products=[
+      {id:1,name:'Spicy Mango Achar',price:550,flavour:'Tangy raw mango with traditional Nepali spices.',img:'image/spicymangoachar.png'},
+      {id:2,name:'Mixed Veggie Achar',price:480,flavour:'Seasonal veggies, mildly spiced & aromatic.',img:'image/mixedveggieachar.png'},
+      {id:3,name:'Garlic & Mustard Achar',price:600,flavour:'Creamy garlic with mustard oil — a crowd favourite.',img:'image/garlicmustardachary.png'},
+      {id:4,name:'Red Chili Crunch',price:520,flavour:'Crunchy chilli pickle with an extra kick.',img:'image/redchillicrunch.png'},
+      {id:5,name:'Potato Pickle',price:450,flavour:'Soft potatoes, balanced spices — comfort food.',img:'image/potatopickle.png'},
+      {id:6,name:'Lapshi Special Achar',price:350,flavour:'Smoky, earthy regional favourite.',img:'image/lapshispecial.png'},
+      {id:7,name:'Big Buff Blast Achar',price:550,flavour:'A bold and fiery pickle made with tender buffalo meat chunks, slow-cooked in aromatic Nepali masala.',img:'image/bigbuffblast.png'},
+      {id:8,name:'Smoky Chicken Delight Achar',price:650,flavour:'Juicy chicken bites infused with traditional herbs and spices, then pickled to perfection.',img:'image/smokychilliachary.png'}
+    ];
+
+    const testimonials=[
+      {name:'Ram Bahadur Koirala',location:'Kathmandu',text:'Loved the Spicy Mango achar — perfect tang and just like my nani used to make.'},
+      {name:'Sita Devi Thapa',location:'Pokhara',text:'The Garlic & Mustard achar is heavenly on dal-bhat. Reminds me of home.'},
+      {name:'Maya Kumari Shah',location:'Biratnagar',text:'Bamboo shoot pickle has a unique smoky flavour. Highly recommended!'},
+      {name:'Prakash Manandhar',location:'Dharan',text:'Mixed Veggie achar is fresh and balanced — my kids loved it.'},
+      {name:'Anita Gurung',location:'Butwal',text:'Red Chili Crunch has the perfect crunch and heat. Great with momos.'},
+      {name:'Suresh Prasad Adhikari',location:'Hetauda',text:'Potato pickle is comfort food — soft and flavorful.'}
+    ];
+
+    function renderProducts(list){
+      const grid=document.getElementById('productsGrid');
+      grid.innerHTML='';
+      list.forEach(p=>{
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML=`
+          <img class="product-img" src="${p.img}" alt="${p.name}">
+          <div class="product-title">${p.name}</div>
+          <div class="product-desc">${p.flavour}</div>
+          <div class="price-row">
+            <div class="price">Rs ${p.price}</div>
+            <button class="add" onclick="openProduct(${p.id})">View</button>
+          </div>`;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderTestimonials(list){
+      const grid=document.getElementById('testGrid');
+      grid.innerHTML='';
+      list.forEach(t=>{
+        const el=document.createElement('div');
+        el.className='testimonial';
+        el.innerHTML=`
+          <p>\"${t.text}\"</p>
+          <div class="t-name">${t.name}</div>
+          <div class="t-role">${t.location}</div>`;
+        grid.appendChild(el);
+      });
+    }
+
+    function openProduct(id){
+      const p=products.find(x=>x.id===id);
+      if(!p)return;
+      alert(`${p.name}\n\n${p.flavour}\nPrice: Rs ${p.price}`);
+    }
+
+    function submitForm(){
+      const name=document.getElementById('name').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const msg=document.getElementById('message').value.trim();
+      if(!name||!email||!msg){
+        document.getElementById('formStatus').textContent='Please fill all fields.';
+        return;
+      }
+      document.getElementById('formStatus').textContent='Thank you, '+name+'! We will get back to you soon.';
+      document.querySelectorAll('.form input,.form textarea').forEach(el=>el.value='');
+    }
+
+    function toggleMobileMenu(){
+      const nav=document.querySelector('nav');
+      nav.style.display=nav.style.display==='flex'?'none':'flex';
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      renderProducts(products);
+      renderTestimonials(testimonials);
+    });
+  </script>
+</body>
+</html>
