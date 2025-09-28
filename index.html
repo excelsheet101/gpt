@@ -95,6 +95,11 @@
       max-width: 500px;
       text-align: center;
       position: relative;
+      animation: popup 0.3s ease;
+    }
+    @keyframes popup {
+      from {transform: scale(0.9); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
     }
     .modal-content img {
       width: 100%;
@@ -132,6 +137,7 @@
       cursor: pointer;
       font-size: 16px;
       margin-top: 10px;
+      width: 95%;
     }
     .confirm-btn:hover {
       background: #1ebe5d;
@@ -163,6 +169,7 @@
       <p><strong>Total: Rs. <span id="total-price"></span></strong></p>
 
       <input type="text" id="customer-name" placeholder="Enter your name">
+      <input type="text" id="customer-phone" placeholder="Enter your phone number">
       <textarea id="customer-address" placeholder="Enter your address"></textarea>
 
       <button class="confirm-btn" onclick="placeOrder()">Confirm & Order on WhatsApp</button>
@@ -203,6 +210,7 @@
       document.getElementById("quantity").value = 1;
       document.getElementById("total-price").innerText = selectedProduct.price;
       document.getElementById("customer-name").value = "";
+      document.getElementById("customer-phone").value = "";
       document.getElementById("customer-address").value = "";
       modal.style.display = "flex";
     }
@@ -221,18 +229,26 @@
       let qty = parseInt(document.getElementById("quantity").value) || 1;
       let total = selectedProduct.price * qty;
       let name = document.getElementById("customer-name").value.trim();
+      let phone = document.getElementById("customer-phone").value.trim();
       let address = document.getElementById("customer-address").value.trim();
 
-      if (!name || !address) {
-        alert("Please enter your name and address.");
+      if (!name || !phone || !address) {
+        alert("Please fill all fields (Name, Phone, Address).");
         return;
       }
 
-      let message = `Hello! I want to order:\n\n📦 *${selectedProduct.name}*\n🍴 Flavour: ${selectedProduct.flavour}\n💰 Price: Rs. ${selectedProduct.price}\n🔢 Quantity: ${qty}\n🧾 Total: Rs. ${total}\n\n👤 Name: ${name}\n🏠 Address: ${address}`;
-      let phone = "9779800000000"; // Replace with your WhatsApp number
-      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      let message = `Hello! I want to order:\n\n📦 *${selectedProduct.name}*\n🍴 Flavour: ${selectedProduct.flavour}\n💰 Price: Rs. ${selectedProduct.price}\n🔢 Quantity: ${qty}\n🧾 Total: Rs. ${total}\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n🏠 Address: ${address}`;
+      let whatsappNumber = "9779800000000"; // Replace with your WhatsApp number
+      let url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
       window.open(url, "_blank");
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeModal();
+      }
     }
   </script>
 </body>
