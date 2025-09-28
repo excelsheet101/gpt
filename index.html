@@ -150,7 +150,7 @@ function placeOrder(){
   if(!name||!phone||!address){alert("Please fill all fields.");return;}
   const total=selectedProduct.price*selectedQty;
   const msg=`Hello GPT 👋,%0AOrder Details:%0AProduct: *${selectedProduct.name}*%0ADescription: ${selectedProduct.flavour}%0APrice: Rs ${selectedProduct.price}%0AQuantity: ${selectedQty}%0A*Total: Rs ${total}*%0A%0ACustomer: ${name}%0A📞 Phone: ${phone}%0A🏠 Address: ${address}`;
-  const phoneNumber="9779741203315"; // replace with your WhatsApp number
+  const phoneNumber="9779802898029"; // replace with your WhatsApp number
   window.open(`https://wa.me/${phoneNumber}?text=${msg}`,"_blank");
 }
 
@@ -160,3 +160,4 @@ document.addEventListener('DOMContentLoaded',()=>renderProducts(products));
 
 </body>
 </html>
+
