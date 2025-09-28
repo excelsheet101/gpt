@@ -1,124 +1,239 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GPT — Great Pickle Taste</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPT Pickles - Great Pickle Taste</title>
   <style>
-    :root {
-      --accent:#E67E22;
-      --muted:#555;
-      --bg:#f9fafb;
-      --card:#fff;
-      --radius:16px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
     }
-    *{box-sizing:border-box}
-    body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#222}
-    a{text-decoration:none}
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .product-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      text-align: center;
+    }
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .product-card h3 {
+      margin: 10px 0 5px;
+    }
+    .product-card p {
+      font-size: 14px;
+      color: #555;
+    }
+    .product-card span {
+      font-weight: bold;
+      display: block;
+      margin: 8px 0;
+      font-size: 16px;
+      color: #27ae60;
+    }
+    .product-card button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .product-card button:hover {
+      background: #219150;
+    }
 
-    .topbar{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:50}
-    .brand{display:flex;gap:10px;align-items:center}
-    .logo{font-weight:700;font-size:20px;color:var(--accent)}
-
-    section{padding:50px 20px}
-    h3.section-title{font-size:28px;margin-bottom:20px;text-align:center}
-
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .card{background:var(--card);padding:16px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.05);display:flex;flex-direction:column}
-    .product-img{width:100%;border-radius:12px;aspect-ratio:1/1;object-fit:cover}
-    .product-title{font-weight:600;margin-top:12px;font-size:16px}
-    .product-desc{font-size:14px;color:var(--muted);margin:6px 0}
-    .price{font-weight:700;margin:6px 0}
-    .qty-box{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-    .qty-box button{padding:4px 10px;border:none;background:#eee;border-radius:6px;cursor:pointer}
-    .input-box{margin-bottom:8px}
-    .input-box input{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:14px}
-    .total{font-weight:600;margin:6px 0;color:var(--accent)}
-    .add{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:none;font-size:14px;cursor:pointer;transition:background 0.3s}
-    .add:hover{background:#cf6d1a}
+    /* Popup modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      position: relative;
+    }
+    .modal-content img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+    }
+    .close:hover {
+      color: black;
+    }
+    input, select, textarea {
+      width: 90%;
+      margin: 8px auto;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      display: block;
+      font-size: 14px;
+    }
+    .confirm-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .confirm-btn:hover {
+      background: #1ebe5d;
+    }
   </style>
 </head>
 <body>
+  <header>
+    <h1>GPT Pickles – Great Pickle Taste</h1>
+  </header>
 
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">GPT</div>
-    <h1 style="font-size:18px;margin:0;">Great Pickle Taste</h1>
-  </div>
-</header>
-
-<main>
-  <!-- Products -->
   <section id="products">
-    <h3 class="section-title">Our Pickles</h3>
-    <div class="grid" id="productsGrid"></div>
+    <h2>Our Products</h2>
+    <div class="products" id="product-list"></div>
   </section>
-</main>
 
-<script>
-const products=[
-  {id:1,name:'Spicy Mango Achar',price:550,flavour:'Tangy raw mango with traditional Nepali spices.',img:'image/spicymangoachar.png'},
-  {id:2,name:'Mixed Veggie Achar',price:480,flavour:'Seasonal veggies, mildly spiced & aromatic.',img:'image/mixedveggieachar.png'},
-  {id:3,name:'Garlic & Mustard Achar',price:600,flavour:'Creamy garlic with mustard oil — a crowd favourite.',img:'image/garlicmustardachary.png'},
-  {id:4,name:'Red Chili Crunch',price:520,flavour:'Crunchy chilli pickle with an extra kick.',img:'image/redchillicrunch.png'},
-  {id:5,name:'Potato Pickle',price:450,flavour:'Soft potatoes, balanced spices — comfort food.',img:'image/potatopickle.png'},
-  {id:6,name:'Lapshi Special Achar',price:350,flavour:'Smoky, earthy regional favourite.',img:'image/lapshispecial.png'},
-  {id:7,name:'Big Buff Blast Achar',price:550,flavour:'A bold and fiery pickle made with tender buffalo meat chunks, slow-cooked in aromatic Nepali masala.',img:'image/bigbuffblast.png'},
-  {id:8,name:'Smoky Chicken Delight Achar',price:650,flavour:'Juicy chicken bites infused with traditional herbs and spices, then pickled to perfection.',img:'image/smokychilliachary.png'}
-];
+  <!-- Order Modal -->
+  <div id="orderModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-img" src="" alt="Product">
+      <h3 id="modal-name"></h3>
+      <p id="modal-flavour"></p>
+      <p><strong>Price: Rs. <span id="modal-price"></span></strong></p>
 
-function renderProducts(list){
-  const grid=document.getElementById('productsGrid');
-  grid.innerHTML='';
-  list.forEach(p=>{
-    const card=document.createElement('div');
-    card.className='card';
-    card.innerHTML=`
-      <img class="product-img" src="${p.img}" alt="${p.name}">
-      <div class="product-title">${p.name}</div>
-      <div class="product-desc">${p.flavour}</div>
-      <div class="price">Price: Rs ${p.price}</div>
+      <label>Quantity:</label>
+      <input type="number" id="quantity" min="1" value="1" oninput="updateTotal()">
 
-      <div class="input-box"><input type="text" id="name-${p.id}" placeholder="Your Name"></div>
-      <div class="input-box"><input type="text" id="address-${p.id}" placeholder="Your Address"></div>
+      <p><strong>Total: Rs. <span id="total-price"></span></strong></p>
 
-      <div class="qty-box">
-        <button onclick="changeQty(${p.id},-1)">-</button>
-        <span id="qty-${p.id}">1</span>
-        <button onclick="changeQty(${p.id},1)">+</button>
-      </div>
-      <div class="total" id="total-${p.id}">Total: Rs ${p.price}</div>
+      <input type="text" id="customer-name" placeholder="Enter your name">
+      <textarea id="customer-address" placeholder="Enter your address"></textarea>
 
-      <button class="add" onclick="orderNow(${p.id})">Order Now</button>
-    `;
-    grid.appendChild(card);
-  });
-}
+      <button class="confirm-btn" onclick="placeOrder()">Confirm & Order on WhatsApp</button>
+    </div>
+  </div>
 
-function changeQty(id,delta){
-  const qtyEl=document.getElementById(`qty-${id}`);
-  let qty=parseInt(qtyEl.textContent);
-  qty=Math.max(1,qty+delta);
-  qtyEl.textContent=qty;
-  const p=products.find(x=>x.id===id);
-  document.getElementById(`total-${id}`).textContent=`Total: Rs ${p.price*qty}`;
-}
+  <script>
+    const products = [
+      {id:1, name:"Spicy Mango Achar", price:550, flavour:"Tangy raw mango with traditional Nepali spices.", img:"redchillicrunch.png"},
+      {id:2, name:"Big Buff Blast Achar", price:750, flavour:"Bold buffalo meat pickle with fiery Nepali masala.", img:"bigbuffblast.png"},
+      {id:3, name:"Smoky Chicken Delight Achar", price:650, flavour:"Tender chicken chunks infused with smoky spices.", img:"smokychicken.png"}
+    ];
 
-function orderNow(id){
-  const p=products.find(x=>x.id===id);
-  const qty=parseInt(document.getElementById(`qty-${id}`).textContent);
-  const total=p.price*qty;
-  const name=document.getElementById(`name-${id}`).value.trim();
-  const address=document.getElementById(`address-${id}`).value.trim();
-  if(!name||!address){alert("Please enter your name and address.");return;}
-  const phone="9779741203315"; // your WhatsApp number
-  const msg=`Hello GPT 👋,%0AOrder Details:%0AProduct: *${p.name}*%0ADescription: ${p.flavour}%0APrice: Rs ${p.price}%0AQuantity: ${qty}%0A*Total: Rs ${total}*%0A%0ACustomer: ${name}%0AAddress: ${address}`;
-  window.open(`https://wa.me/${phone}?text=${msg}`,"_blank");
-}
+    const productList = document.getElementById("product-list");
+    const modal = document.getElementById("orderModal");
+    let selectedProduct = null;
 
-document.addEventListener('DOMContentLoaded',()=>renderProducts(products));
-</script>
+    // Render product list
+    products.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.flavour}</p>
+        <span>Rs. ${p.price}</span>
+        <button onclick="openModal(${p.id})">Order Now</button>
+      `;
+      productList.appendChild(card);
+    });
 
+    function openModal(id) {
+      selectedProduct = products.find(p => p.id === id);
+      document.getElementById("modal-img").src = selectedProduct.img;
+      document.getElementById("modal-name").innerText = selectedProduct.name;
+      document.getElementById("modal-flavour").innerText = selectedProduct.flavour;
+      document.getElementById("modal-price").innerText = selectedProduct.price;
+      document.getElementById("quantity").value = 1;
+      document.getElementById("total-price").innerText = selectedProduct.price;
+      document.getElementById("customer-name").value = "";
+      document.getElementById("customer-address").value = "";
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    function updateTotal() {
+      let qty = parseInt(document.getElementById("quantity").value) || 1;
+      let total = selectedProduct.price * qty;
+      document.getElementById("total-price").innerText = total;
+    }
+
+    function placeOrder() {
+      let qty = parseInt(document.getElementById("quantity").value) || 1;
+      let total = selectedProduct.price * qty;
+      let name = document.getElementById("customer-name").value.trim();
+      let address = document.getElementById("customer-address").value.trim();
+
+      if (!name || !address) {
+        alert("Please enter your name and address.");
+        return;
+      }
+
+      let message = `Hello! I want to order:\n\n📦 *${selectedProduct.name}*\n🍴 Flavour: ${selectedProduct.flavour}\n💰 Price: Rs. ${selectedProduct.price}\n🔢 Quantity: ${qty}\n🧾 Total: Rs. ${total}\n\n👤 Name: ${name}\n🏠 Address: ${address}`;
+      let phone = "9779800000000"; // Replace with your WhatsApp number
+      let url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    }
+  </script>
 </body>
 </html>
