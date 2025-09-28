@@ -11,7 +11,7 @@
 
   <style>
     :root{
-      --accent:#E67E22; /* warm orange modern accent */
+      --accent:#E67E22;
       --muted:#555;
       --bg:#f9fafb;
       --card:#fff;
@@ -55,6 +55,8 @@
     .product-desc{font-size:14px;color:var(--muted);margin-top:6px;flex:1}
     .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
     .price{font-weight:700;font-size:15px}
+    .qty-box{display:flex;align-items:center;gap:8px;}
+    .qty-box button{padding:4px 10px;border:none;background:#eee;border-radius:6px;cursor:pointer}
     .add{background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;border:none;font-size:14px;cursor:pointer;transition:background 0.3s}
     .add:hover{background:#cf6d1a}
 
@@ -110,7 +112,7 @@
         <a class="shop-btn" href="#products">Explore Products</a>
       </div>
       <div class="hero-img">
-        <img src="image\covergpt.png" alt="Homemade pickles">
+        <img src="image/covergpt.png" alt="Homemade pickles">
       </div>
     </section>
 
@@ -188,10 +190,34 @@
           <div class="product-desc">${p.flavour}</div>
           <div class="price-row">
             <div class="price">Rs ${p.price}</div>
-            <button class="add" onclick="openProduct(${p.id})">View</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px;">
+            <div class="qty-box">
+              <button onclick="changeQty(${p.id},-1)">-</button>
+              <span id="qty-${p.id}">1</span>
+              <button onclick="changeQty(${p.id},1)">+</button>
+            </div>
+            <button class="add" onclick="orderNow(${p.id})">Order Now</button>
           </div>`;
         grid.appendChild(card);
       });
+    }
+
+    function changeQty(id,delta){
+      const qtyEl=document.getElementById(`qty-${id}`);
+      let qty=parseInt(qtyEl.textContent);
+      qty=Math.max(1,qty+delta);
+      qtyEl.textContent=qty;
+    }
+
+    function orderNow(id){
+      const p=products.find(x=>x.id===id);
+      if(!p) return;
+      const qty=parseInt(document.getElementById(`qty-${id}`).textContent);
+      const total=p.price*qty;
+      const phone="9779741203315"; // your WhatsApp number
+      const msg=`Hello GPT 👋,%0AI would like to order:%0A*${p.name}*%0A${p.flavour}%0APrice: Rs ${p.price}%0AQuantity: ${qty} jar(s)%0A*Total: Rs ${total}*`;
+      window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
     }
 
     function renderTestimonials(list){
@@ -201,17 +227,11 @@
         const el=document.createElement('div');
         el.className='testimonial';
         el.innerHTML=`
-          <p>\"${t.text}\"</p>
+          <p>"${t.text}"</p>
           <div class="t-name">${t.name}</div>
           <div class="t-role">${t.location}</div>`;
         grid.appendChild(el);
       });
-    }
-
-    function openProduct(id){
-      const p=products.find(x=>x.id===id);
-      if(!p)return;
-      alert(`${p.name}\n\n${p.flavour}\nPrice: Rs ${p.price}`);
     }
 
     function submitForm(){
