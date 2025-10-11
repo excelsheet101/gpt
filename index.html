@@ -17,76 +17,127 @@
     body{font-family:'Poppins',sans-serif;margin:0;background:var(--bg);color:#222}
     a{text-decoration:none}
 
-    .topbar{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:50}
-    .brand{display:flex;gap:10px;align-items:center}
-    .logo{font-weight:700;font-size:20px;color:var(--accent)}
+    /* HEADER */
+    header{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:50}
+    .logo{font-weight:700;font-size:22px;color:var(--accent)}
 
-    section{padding:50px 20px}
-    h3.section-title{font-size:28px;margin-bottom:20px;text-align:center}
+    /* SECTIONS */
+    section{padding:60px 20px;max-width:1100px;margin:auto}
+    h2.section-title{text-align:center;font-size:30px;margin-bottom:30px;font-weight:700}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .card{background:var(--card);padding:16px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(0,0,0,0.05);display:flex;flex-direction:column}
+    /* STORY */
+    .story{text-align:center;line-height:1.8;color:var(--muted);max-width:800px;margin:auto}
+
+    /* PRODUCTS */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+    .card{background:var(--card);padding:16px;border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,0.05);transition:transform .2s}
+    .card:hover{transform:translateY(-4px)}
     .product-img{width:100%;border-radius:12px;aspect-ratio:1/1;object-fit:cover}
-    .product-title{font-weight:600;margin-top:12px;font-size:16px}
+    .product-title{font-weight:600;margin-top:12px;font-size:18px}
     .product-desc{font-size:14px;color:var(--muted);margin:6px 0}
-    .price{font-weight:700;margin:6px 0}
-    .qty-box{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-    .qty-box button{padding:4px 10px;border:none;background:#eee;border-radius:6px;cursor:pointer}
-    .total{font-weight:600;margin:6px 0;color:var(--accent)}
-    .add{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:none;font-size:14px;cursor:pointer;transition:background 0.3s}
-    .add:hover{background:#cf6d1a}
+    .price{font-weight:700;margin:8px 0;color:var(--accent)}
+    .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:none;font-size:14px;cursor:pointer;transition:background 0.3s;width:100%}
+    .btn:hover{background:#cf6d1a}
 
-    /* Modal */
-    .modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.6);justify-content:center;align-items:center}
-    .modal-content{background:#fff;padding:20px;border-radius:16px;max-width:500px;width:90%;text-align:center;position:relative}
-    .modal-content img{width:100%;max-height:250px;object-fit:cover;border-radius:12px;margin-bottom:15px}
-    .close{position:absolute;right:15px;top:10px;font-size:24px;cursor:pointer;color:#888}
-    .close:hover{color:#000}
-    .modal-content input,.modal-content textarea{width:100%;padding:10px;margin:8px 0;border:1px solid #ddd;border-radius:8px;font-size:14px}
-    .confirm-btn{background:#25D366;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-size:16px;margin-top:10px;width:100%}
-    .confirm-btn:hover{background:#1ebe5d}
+    /* TESTIMONIALS */
+    .testimonials{background:#fff;padding:60px 20px;border-top:1px solid #eee;border-bottom:1px solid #eee}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:auto}
+    .testimonial-card{background:var(--card);padding:20px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.05)}
+    .testimonial-name{font-weight:600;color:var(--accent);margin-top:10px}
+    .testimonial-pickle{font-size:14px;color:var(--muted)}
+
+    /* MODAL */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);justify-content:center;align-items:center;z-index:999}
+    .modal-content{background:#fff;padding:24px;border-radius:12px;max-width:400px;width:90%;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.3);animation:fadeIn .3s;position:relative}
+    @keyframes fadeIn{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+    .close-btn{background:none;border:none;font-size:22px;position:absolute;top:16px;right:20px;cursor:pointer;color:#555}
+    .modal-img{width:100%;border-radius:10px;margin-bottom:10px}
+    .input-box{margin:8px 0}
+    .input-box input{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+    .qty-box{display:flex;justify-content:center;align-items:center;gap:10px;margin:10px 0}
+    .qty-box button{padding:4px 10px;border:none;background:#eee;border-radius:6px;cursor:pointer;font-size:18px}
+    .total{font-weight:600;margin-top:6px;color:var(--accent)}
+
+    /* FOOTER */
+    footer{background:#fff;padding:30px;text-align:center;color:#666;font-size:14px;border-top:1px solid #eee}
   </style>
 </head>
 <body>
 
-<header class="topbar">
-  <div class="brand">
-    <div class="logo">GPT</div>
-    <h1 style="font-size:18px;margin:0;">Great Pickle Taste</h1>
-  </div>
+<header>
+  <div class="logo">GPT — Great Pickle Taste</div>
 </header>
 
-<main>
-  <!-- Products -->
-  <section id="products">
-    <h3 class="section-title">Our Pickles</h3>
-    <div class="grid" id="productsGrid"></div>
-  </section>
-</main>
+<!-- OUR STORY -->
+<section id="story">
+  <h2 class="section-title">Our Story</h2>
+  <p class="story">
+    GPT (Great Pickle Taste) began in a home kitchen where a passionate housewife followed her dream of sharing her family's treasured recipes passed down from her mother and grandmother.
+    Exploring diverse pickle styles from across Nepal, she built a brand that celebrates tradition, authenticity, and empowerment.
+    Today, GPT brings these incredible homemade tastes to the world—crafted by an inspiring team of women bringing incredible taste to incredible people like you.
+  </p>
+</section>
 
-<!-- Modal -->
-<div id="orderModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modal-img" src="" alt="Product">
-    <h3 id="modal-name"></h3>
-    <p id="modal-flavour"></p>
-    <p><strong>Price: Rs. <span id="modal-price"></span></strong></p>
+<!-- PRODUCTS -->
+<section id="products">
+  <h2 class="section-title">Our Pickles</h2>
+  <div class="grid" id="productsGrid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <h2 class="section-title">What Our Customers Say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p>"The <b>Spicy Mango Achar</b> reminded me of my childhood in Terai! Perfect blend of tanginess and spice."</p>
+      <div class="testimonial-name">— Sushma Thapa</div>
+      <div class="testimonial-pickle">Tried: Spicy Mango Achar</div>
+    </div>
+    <div class="testimonial-card">
+      <p>"The <b>Big Buff Blast Achar</b> is just wow! Smoky, spicy, and so flavorful. Must-try for meat lovers."</p>
+      <div class="testimonial-name">— Ramesh Karki</div>
+      <div class="testimonial-pickle">Tried: Big Buff Blast Achar</div>
+    </div>
+    <div class="testimonial-card">
+      <p>"Loved the <b>Smoky Chicken Delight Achar</b>. The aroma and tenderness of chicken are unbeatable!"</p>
+      <div class="testimonial-name">— Priyanka Gurung</div>
+      <div class="testimonial-pickle">Tried: Smoky Chicken Delight Achar</div>
+    </div>
+    <div class="testimonial-card">
+      <p>"Red Chili Crunch Achar adds a kick to every meal! GPT pickles truly have that homemade authenticity."</p>
+      <div class="testimonial-name">— Deepak Maharjan</div>
+      <div class="testimonial-pickle">Tried: Red Chili Crunch</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="orderModal">
+  <div class="modal-content" id="modalContent">
+    <button class="close-btn" onclick="closeModal()">&times;</button>
+    <img id="modalImg" class="modal-img" src="" alt="">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc" style="color:#555;font-size:14px"></p>
+    <p id="modalPrice" style="font-weight:600;color:var(--accent)"></p>
+
+    <div class="input-box"><input type="text" id="custName" placeholder="Your Name"></div>
+    <div class="input-box"><input type="text" id="custAddress" placeholder="Your Address"></div>
 
     <div class="qty-box">
-      <button onclick="changeQtyModal(-1)">-</button>
-      <span id="modal-qty">1</span>
-      <button onclick="changeQtyModal(1)">+</button>
+      <button onclick="changeModalQty(-1)">−</button>
+      <span id="modalQty">1</span>
+      <button onclick="changeModalQty(1)">+</button>
     </div>
-    <p class="total">Total: Rs <span id="modal-total"></span></p>
+    <div class="total" id="modalTotal"></div>
 
-    <input type="text" id="customer-name" placeholder="Your Name">
-    <input type="text" id="customer-phone" placeholder="Your Phone Number">
-    <textarea id="customer-address" placeholder="Your Address"></textarea>
-
-    <button class="confirm-btn" onclick="placeOrder()">Confirm & Order on WhatsApp</button>
+    <button class="btn" onclick="sendWhatsApp()">Confirm & Order on WhatsApp</button>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 GPT — Great Pickle Taste. All rights reserved.
+</footer>
 
 <script>
 const products=[
@@ -96,68 +147,64 @@ const products=[
   {id:4,name:'Red Chili Crunch',price:520,flavour:'Crunchy chilli pickle with an extra kick.',img:'image/redchillicrunch.png'},
   {id:5,name:'Potato Pickle',price:450,flavour:'Soft potatoes, balanced spices — comfort food.',img:'image/potatopickle.png'},
   {id:6,name:'Lapshi Special Achar',price:350,flavour:'Smoky, earthy regional favourite.',img:'image/lapshispecial.png'},
-  {id:7,name:'Big Buff Blast Achar',price:550,flavour:'A bold and fiery pickle made with tender buffalo meat chunks, slow-cooked in aromatic Nepali masala.',img:'image/bigbuffblast.png'},
+  {id:7,name:'Big Buff Blast Achar',price:750,flavour:'A bold and fiery pickle made with tender buffalo meat chunks, slow-cooked in aromatic Nepali masala.',img:'image/bigbuffblast.png'},
   {id:8,name:'Smoky Chicken Delight Achar',price:650,flavour:'Juicy chicken bites infused with traditional herbs and spices, then pickled to perfection.',img:'image/smokychilliachary.png'}
 ];
 
+const grid=document.getElementById('productsGrid');
+const modal=document.getElementById('orderModal');
 let selectedProduct=null;
-let selectedQty=1;
+let modalQty=1;
 
-function renderProducts(list){
-  const grid=document.getElementById('productsGrid');
+function renderProducts(){
   grid.innerHTML='';
-  list.forEach(p=>{
+  products.forEach(p=>{
     const card=document.createElement('div');
     card.className='card';
     card.innerHTML=`
       <img class="product-img" src="${p.img}" alt="${p.name}">
       <div class="product-title">${p.name}</div>
       <div class="product-desc">${p.flavour}</div>
-      <div class="price">Price: Rs ${p.price}</div>
-      <button class="add" onclick="openModal(${p.id})">Order Now</button>
-    `;
+      <div class="price">Rs ${p.price}</div>
+      <button class="btn" onclick="openModal(${p.id})">Order Now</button>`;
     grid.appendChild(card);
   });
 }
 
 function openModal(id){
-  selectedProduct=products.find(p=>p.id===id);
-  selectedQty=1;
-  document.getElementById("modal-img").src=selectedProduct.img;
-  document.getElementById("modal-name").innerText=selectedProduct.name;
-  document.getElementById("modal-flavour").innerText=selectedProduct.flavour;
-  document.getElementById("modal-price").innerText=selectedProduct.price;
-  document.getElementById("modal-qty").innerText=1;
-  document.getElementById("modal-total").innerText=selectedProduct.price;
-  document.getElementById("customer-name").value="";
-  document.getElementById("customer-phone").value="";
-  document.getElementById("customer-address").value="";
-  document.getElementById("orderModal").style.display="flex";
+  selectedProduct=products.find(x=>x.id===id);
+  modalQty=1;
+  document.getElementById('modalImg').src=selectedProduct.img;
+  document.getElementById('modalTitle').textContent=selectedProduct.name;
+  document.getElementById('modalDesc').textContent=selectedProduct.flavour;
+  document.getElementById('modalPrice').textContent=`Price: Rs ${selectedProduct.price}`;
+  document.getElementById('modalQty').textContent=modalQty;
+  document.getElementById('modalTotal').textContent=`Total: Rs ${selectedProduct.price}`;
+  modal.style.display='flex';
 }
 
-function closeModal(){document.getElementById("orderModal").style.display="none";}
+function closeModal(){modal.style.display='none';}
 
-function changeQtyModal(delta){
-  selectedQty=Math.max(1,selectedQty+delta);
-  document.getElementById("modal-qty").innerText=selectedQty;
-  document.getElementById("modal-total").innerText=selectedProduct.price*selectedQty;
+function changeModalQty(delta){
+  modalQty=Math.max(1,modalQty+delta);
+  document.getElementById('modalQty').textContent=modalQty;
+  document.getElementById('modalTotal').textContent=`Total: Rs ${selectedProduct.price*modalQty}`;
 }
 
-function placeOrder(){
-  const name=document.getElementById("customer-name").value.trim();
-  const phone=document.getElementById("customer-phone").value.trim();
-  const address=document.getElementById("customer-address").value.trim();
-  if(!name||!phone||!address){alert("Please fill all fields.");return;}
-  const total=selectedProduct.price*selectedQty;
-  const msg=`Hello GPT 👋,%0AOrder Details:%0AProduct: *${selectedProduct.name}*%0ADescription: ${selectedProduct.flavour}%0APrice: Rs ${selectedProduct.price}%0AQuantity: ${selectedQty}%0A*Total: Rs ${total}*%0A%0ACustomer: ${name}%0A📞 Phone: ${phone}%0A🏠 Address: ${address}`;
-  const phoneNumber="9779802898029"; // replace with your WhatsApp number
-  window.open(`https://wa.me/${phoneNumber}?text=${msg}`,"_blank");
+function sendWhatsApp(){
+  const name=document.getElementById('custName').value.trim();
+  const address=document.getElementById('custAddress').value.trim();
+  if(!name||!address){alert('Please enter your name and address.');return;}
+  const total=selectedProduct.price*modalQty;
+  const phone='9779741203315'; // change to your WhatsApp number
+  const msg=`Hello GPT 👋,%0AOrder Details:%0AProduct: *${selectedProduct.name}*%0ADescription: ${selectedProduct.flavour}%0APrice: Rs ${selectedProduct.price}%0AQuantity: ${modalQty}%0A*Total: Rs ${total}*%0A%0ACustomer: ${name}%0AAddress: ${address}`;
+  window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
+  closeModal();
 }
 
-window.onclick=function(e){if(e.target==document.getElementById("orderModal"))closeModal();}
-document.addEventListener('DOMContentLoaded',()=>renderProducts(products));
+window.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('DOMContentLoaded',renderProducts);
 </script>
 
 </body>
 </html>
-
